@@ -1,0 +1,53 @@
+﻿@using bendinsnMusicApp.Models
+@model IEnumerable<bendinsnMusicApp.Models.Album>
+
+@{
+    ViewData["Title"] = "Album List";
+}
+
+<h2>Index</h2>
+<a asp-action="Add" asp-controller="Albums">Add Album</a><br />
+
+<table>
+    <thead>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>Genre</th>
+    <th>Price</th>
+    </thead>
+    @foreach (var album in Model)
+    {
+        <tr>
+            <td>@album.Title</td>
+            <td>
+                @{
+                    foreach (var artist in ViewBag.Artists)
+                    {
+                        if (artist.ArtistID == album.ArtistID)
+                        { @artist.Name }
+                    }
+                }
+            </td>
+
+            <td>
+                @{
+                    foreach (var genre in ViewBag.Genres)
+                    {
+                        if (genre.GenreID == album.GenreID)
+                        { @genre.Name }
+
+                    }
+                }
+            </td>
+
+            <td>@album.Price</td>
+            <td>
+                <a asp-action="Details" asp-controller="Albums" asp-route-id="@album.AlbumID">Details </a>
+                @*<a asp-action="Edit" asp-controller="Albums" asp-route-id="@album.AlbumID">Edit </a>*@
+                <a asp-action="Delete" asp-controller="Albums" asp-route-id="@album.AlbumID">Delete</a>
+            </td>
+        </tr>
+
+    }
+</table>
+

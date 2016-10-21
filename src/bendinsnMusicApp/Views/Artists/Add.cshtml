@@ -1,0 +1,12 @@
+﻿@using bendinsnMusicApp.Models
+@model Artist
+
+<h2>Add Artist</h2>
+
+<form action="Add" method="post">
+    Name: <input type="text" name="Name" value="" autofocus />
+    <span asp-validation-for="Name" class="text-danger"></span><br />
+    Bio: <input type="text" name="Bio" value="" />
+    <span asp-validation-for="Bio" class="text-danger"></span><br />
+    <input type="submit" value="Submit" />
+</form>

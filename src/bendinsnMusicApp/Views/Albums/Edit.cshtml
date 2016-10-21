@@ -1,0 +1,59 @@
+﻿@using bendinsnMusicApp.Models
+@model Album
+
+@{
+    //Get album from viewbag based on id.
+    Album album = new bendinsnMusicApp.Models.Album();
+    foreach (var a in ViewBag.Albums)
+    {
+        if (a.AlbumID == ViewBag.ID) { album = a; }
+
+    }
+}
+
+<h2>Edit Album</h2>
+
+<form action="Edit" method="post">
+    Title: <input type="text" name="Title" value="@album.Title" autofocus />
+    <span asp-validation-for="Title" class="text-danger"></span><br />
+    Price: <input type="text" name="Price" value="@album.Price" required/>
+    <span asp-validation-for="Price" class="text-danger"></span><br />
+    Artist: <select name="ArtistID">
+        @{
+            var oldArt = new Artist();
+            foreach (Artist artist in ViewBag.Artists)
+            {
+                if (artist.ArtistID == album.ArtistID)
+                {
+                    oldArt = artist;
+                }
+            }
+        }
+        <option value=@album.ArtistID>@oldArt.Name</option>
+        @foreach (Artist artist in ViewBag.Artists)
+        {
+            <option value=@artist.ArtistID>@artist.Name</option>
+        }
+    </select>
+    <span asp-validation-for="ArtistID"></span><br />
+    Genre: <select name="GenreID">
+    @{
+        var oldGen = new Genre();
+        foreach (Genre g in ViewBag.Genres)
+        {
+            if (g.GenreID == album.GenreID)
+            {
+                oldGen = g;
+            }
+        }
+    }
+    <option value=@album.GenreID>@oldGen.Name</option>
+    @foreach (Genre genre in ViewBag.Genres)
+    {
+        <option value=@genre.GenreID>@genre.Name</option>
+    }
+    </select>
+    <span asp-validation-for="GenreID"></span><br />
+
+    <input type="submit" value="Submit" />
+</form>

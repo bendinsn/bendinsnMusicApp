@@ -1,0 +1,27 @@
+﻿@using bendinsnMusicApp.Models
+@model Album
+
+<h2>Add Album</h2>
+
+<form action="Add" method="post">
+    Title: <input type="text" name="Title" value="" autofocus />
+    <span asp-validation-for="Title" class="text-danger"></span><br />
+    Price: <input type="text" name="Price" value="" required/>
+    <span asp-validation-for="Price" class="text-danger"></span><br />
+    Artist: <select name="ArtistID">
+        @foreach (Artist artist in ViewBag.Artists)
+        {
+            <option value=@artist.ArtistID>@artist.Name</option>
+        }
+    </select>
+    <span asp-validation-for="ArtistID"></span><br />
+    Genre: <select name="GenreID">
+    @foreach (Genre genre in ViewBag.Genres)
+    {
+        <option value=@genre.GenreID>@genre.Name</option>
+    }
+    </select>
+    <span asp-validation-for="GenreID"></span><br />
+
+    <input type="submit" value="Submit" />
+</form>

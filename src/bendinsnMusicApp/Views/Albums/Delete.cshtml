@@ -1,0 +1,19 @@
+﻿@using bendinsnMusicApp.Models
+
+
+@{ 
+    //Get album from viewbag based on id.
+    Album album = new bendinsnMusicApp.Models.Album();
+    foreach (var a in ViewBag.Albums)
+    {
+        if (a.AlbumID == ViewBag.ID) { album = a; }
+
+    }
+}
+
+<h1>@album.Title</h1>
+<p>Are you sure you want to delete this album?</p>
+
+<br /><br />
+<a asp-action="deleteConfirmed" asp-controller="Albums" class="btn btn-danger" asp-route-id=@ViewBag.ID>DELETE</a>
+<a asp-action="Index" asp-controller="Albums" class="btn btn-default">Back to list</a><br /><br />

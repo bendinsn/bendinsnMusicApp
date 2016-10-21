@@ -1,0 +1,23 @@
+﻿@using bendinsnMusicApp.Models
+@model IEnumerable<bendinsnMusicApp.Models.Genre>
+
+@{
+    ViewData["Title"] = "Genre List";
+}
+
+<h2>Index</h2>
+<a asp-controller="Genres" asp-action="Add">Add Genre</a><br /><br />
+
+<table>
+    <thead>
+    <th>Genre Name</th>
+    </thead>
+    @foreach (var genre in Model)
+    {
+        <tr>
+            <td>@genre.Name</td>
+        </tr>
+
+    }
+</table>
+
