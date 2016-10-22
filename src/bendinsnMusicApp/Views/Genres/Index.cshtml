@@ -15,7 +15,9 @@
     @foreach (var genre in Model)
     {
         <tr>
-            <td>@genre.Name</td>
+            <td>
+                <a asp-action="Albums" asp-controller="Genres" asp-route-id=@genre.GenreID>@genre.Name</a>
+            </td>
         </tr>
 
     }

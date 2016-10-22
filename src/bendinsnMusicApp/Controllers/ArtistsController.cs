@@ -41,5 +41,14 @@ namespace bendinsnMusicApp.Controllers
             var artists2 = _context.Artists.ToList();
             return View("Index", artists2);
         }
+
+        public IActionResult Albums(int id)
+        {
+            ViewBag.ID = id;
+            ViewBag.Albums = _context.Albums.ToList();
+            ViewBag.Artists = _context.Artists.ToList();
+            ViewBag.Genres = _context.Genres.ToList();
+            return View();
+        }
     }
 }

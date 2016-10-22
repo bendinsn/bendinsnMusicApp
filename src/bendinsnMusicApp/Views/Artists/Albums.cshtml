@@ -1,0 +1,33 @@
+﻿@using bendinsnMusicApp.Models
+
+@{
+    //Get artist from viewbag based on id.
+    Artist artist = new bendinsnMusicApp.Models.Artist();
+    foreach (var a in ViewBag.Artists)
+    {
+        if (a.ArtistID == ViewBag.ID) { artist = a; }
+    }
+}
+@{
+    ViewData["Title"] = "Albums by Artist";
+}
+
+<h2>@artist.Name</h2>
+
+<table>
+    <thead>
+    <th>Album Title</th>
+    </thead>
+    @foreach (var album in ViewBag.Albums)
+    {
+        if (album.ArtistID == artist.ArtistID)
+        {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-controller="Albums" asp-route-id=@album.AlbumID>@album.Title</a>
+            </td>
+        </tr>
+        }
+    }
+</table>
+

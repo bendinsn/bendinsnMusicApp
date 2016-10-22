@@ -8,3 +8,6 @@
     <span asp-validation-for="Name" class="text-danger"></span>
     <input type="submit" value="Submit" />
 </form>
+
+<p>NOTE: Entering a name greater than 20 characters in length will cause a database failure.</p>
+<!--Caused by the data annotations in the Genre object; why doesn't it validate user-side at all?-->

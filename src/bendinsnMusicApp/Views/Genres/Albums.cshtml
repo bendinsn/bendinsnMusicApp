@@ -1,0 +1,32 @@
+﻿@using bendinsnMusicApp.Models
+
+@{
+    //Get genre from viewbag based on id.
+    Genre genre = new bendinsnMusicApp.Models.Genre();
+    foreach (var g in ViewBag.Genres)
+    {
+        if (g.GenreID == ViewBag.ID) { genre = g; }
+    }
+}
+@{
+    ViewData["Title"] = "Albums by Genre";
+}
+
+<h2>@genre.Name</h2>
+
+<table>
+    <thead>
+    <th>Album Title</th>
+    </thead>
+    @foreach (var album in ViewBag.Albums)
+    {
+        if (album.GenreID == genre.GenreID) {
+        <tr>
+            <td>
+                <a asp-action="Details" asp-controller="Albums" asp-route-id=@album.AlbumID>@album.Title</a>
+            </td>
+        </tr>
+        }
+    }
+</table>
+
